@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lielupes Loki karte</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <section class="ll-map-section">
+    <div class="ll-shell">
+      <div class="ll-layout">
+        <div class="ll-map-column">
+          <div class="ll-map-wrap">
+            <div id="llMap" class="ll-map" aria-label="Lielupes Loki zemesgabalu karte">
+              <img
+                class="ll-map-image"
+                src="https://static.tildacdn.com/tild3763-3663-4366-b330-643133363332/lielupes_loki_map_25.webp"
+                alt="Lielupes Loki karte"
+              />
+
+              <div id="llMapLayers" class="ll-map-layers"></div>
+              <div id="llTooltip" class="ll-tooltip" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="ll-sidebar">
+          <div class="ll-sidebar-head">
+            <div>
+              <div class="ll-eyebrow">Lielupes Loki</div>
+              <h2 class="ll-title">Pieejamie zemesgabali</h2>
+            </div>
+            <div class="ll-count" id="llCount"></div>
+          </div>
+
+          <div id="llPropertyList" class="ll-property-list"></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <div id="llModalBackdrop" class="ll-modal-backdrop" aria-hidden="true">
+    <div class="ll-modal" role="dialog" aria-modal="true" aria-labelledby="llModalTitle">
+      <button id="llModalClose" class="ll-modal-close" type="button" aria-label="Aizvērt">
+        ×
+      </button>
+
+      <div class="ll-modal-inner">
+        <div class="ll-modal-head">
+          <div class="ll-eyebrow">Rezervācija</div>
+          <h3 id="llModalTitle" class="ll-modal-title">Rezervēt zemesgabalu</h3>
+          <p class="ll-modal-text">
+            Aizpildiet formu, un mēs sazināsimies ar Jums par izvēlēto zemesgabalu. Pēc pieteikuma saņemšanas tas tiks rezervēts uz 72 stundām.
+          </p>
+        </div>
+
+        <form id="llReservationForm" class="ll-form">
+          <div class="ll-form-grid">
+            <label class="ll-field">
+              <span>Vārds</span>
+              <input id="firstName" name="first_name" type="text" required />
+            </label>
+
+            <label class="ll-field">
+              <span>Uzvārds</span>
+              <input id="lastName" name="last_name" type="text" required />
+            </label>
+
+            <label class="ll-field">
+              <span>Tālrunis</span>
+              <input id="phone" name="phone" type="tel" required />
+            </label>
+
+            <label class="ll-field">
+              <span>E-pasts</span>
+              <input id="email" name="email" type="email" required />
+            </label>
+
+            <label class="ll-field ll-field-full">
+              <span>Zemesgabals</span>
+              <select id="plotSelect" name="plot_id" required></select>
+            </label>
+
+            <label class="ll-field ll-field-full">
+              <span>Komentārs</span>
+              <textarea id="message" name="message" rows="4" placeholder="Ja vēlaties, varat pievienot komentāru..."></textarea>
+            </label>
+          </div>
+
+          <button id="submitBtn" class="ll-submit" type="submit">
+            Nosūtīt rezervāciju
+          </button>
+
+          <div id="llSuccess" class="ll-success" role="status" aria-live="polite"></div>
+          <div id="llError" class="ll-error" role="alert" aria-live="assertive"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
