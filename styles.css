@@ -6,18 +6,18 @@
   --text: #ffffff;
   --body: #1a1a1a;
   --muted: #7a7a7a;
-  --line: rgba(255, 255, 255, 0.16);
-  --line-soft: rgba(9, 34, 14, 0.08);
-  --available: rgba(255, 255, 255, 0.10);
-  --available-stroke: rgba(255, 255, 255, 0.28);
-  --active: rgba(255, 255, 255, 0.24);
-  --active-stroke: rgba(255, 255, 255, 0.86);
+  --line: rgba(255, 255, 255, 0.12);
+  --available: rgba(255, 255, 255, 0.08);
+  --available-stroke: rgba(255, 255, 255, 0.20);
+  --active: rgba(255, 255, 255, 0.20);
+  --active-stroke: rgba(255, 255, 255, 0.82);
   --reserved: rgba(219, 168, 55, 0.42);
   --reserved-stroke: rgba(219, 168, 55, 0.9);
   --sold: rgba(197, 63, 63, 0.42);
   --sold-stroke: rgba(197, 63, 63, 0.9);
   --shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
-  --radius-xl: 32px;
+  --radius-xl: 28px;
+  --radius-lg: 18px;
   --radius-pill: 999px;
   --transition: 180ms ease;
 }
@@ -50,8 +50,8 @@ body {
 
 .ll-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) 420px;
-  gap: 20px;
+  grid-template-columns: minmax(0, 1.45fr) 390px;
+  gap: 18px;
   align-items: start;
 }
 
@@ -118,8 +118,8 @@ body {
 
 .ll-plot-number {
   position: absolute;
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   border-radius: 999px;
   transform: translate(-50%, -50%);
   display: flex;
@@ -128,10 +128,9 @@ body {
   font-family: "Cormorant Garamond", serif;
   font-size: 19px;
   font-weight: 700;
-  letter-spacing: 0.02em;
   color: #ffffff;
-  background: rgba(9, 34, 14, 0.58);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(9, 34, 14, 0.56);
+  border: 1px solid rgba(255, 255, 255, 0.34);
   backdrop-filter: blur(8px);
   pointer-events: none;
   opacity: 0.72;
@@ -159,8 +158,8 @@ body {
   position: absolute;
   min-width: 250px;
   max-width: 320px;
-  padding: 18px 18px 16px;
-  border-radius: 22px;
+  padding: 16px 16px 14px;
+  border-radius: 20px;
   background: rgba(9, 34, 14, 0.95);
   color: #ffffff;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
@@ -187,35 +186,35 @@ body {
 }
 
 .ll-tooltip-address {
-  margin: 0 0 16px;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.74);
+  margin: 0 0 14px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .ll-tooltip-meta {
   display: flex;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .ll-tooltip-meta-label {
   display: block;
   margin-bottom: 3px;
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.56);
 }
 
 .ll-tooltip-meta-value {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
 }
 
 .ll-tooltip-btn {
   width: 100%;
-  height: 46px;
+  height: 44px;
   border: 0;
   border-radius: var(--radius-pill);
   background: #ffffff;
@@ -236,7 +235,7 @@ body {
   color: var(--text);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow);
-  padding: 20px;
+  padding: 18px;
 }
 
 .ll-sidebar-head {
@@ -244,7 +243,7 @@ body {
   justify-content: space-between;
   align-items: flex-end;
   gap: 16px;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
 .ll-eyebrow {
@@ -254,10 +253,14 @@ body {
   color: rgba(255, 255, 255, 0.62);
 }
 
+.ll-eyebrow-dark {
+  color: rgba(9, 34, 14, 0.64);
+}
+
 .ll-title {
   margin: 8px 0 0;
   font-family: "Cormorant Garamond", serif;
-  font-size: 40px;
+  font-size: 38px;
   line-height: 0.95;
   font-weight: 600;
 }
@@ -271,14 +274,14 @@ body {
 .ll-property-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .ll-property-card {
   width: 100%;
   border: 1px solid var(--line);
-  border-radius: var(--radius-pill);
-  padding: 14px 16px;
+  border-radius: var(--radius-lg);
+  padding: 11px 12px;
   background: rgba(255, 255, 255, 0.03);
   color: #ffffff;
   cursor: pointer;
@@ -288,7 +291,7 @@ body {
 .ll-property-card:hover,
 .ll-property-card.is-active {
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.34);
+  border-color: rgba(255, 255, 255, 0.32);
   transform: translateY(-1px);
 }
 
@@ -297,87 +300,83 @@ body {
   opacity: 0.76;
 }
 
-.ll-property-card-top {
+.ll-property-line {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  flex-wrap: wrap;
+  min-width: 0;
 }
 
 .ll-property-badge {
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
   border-radius: 999px;
-  flex: 0 0 36px;
+  flex: 0 0 28px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "Cormorant Garamond", serif;
-  font-size: 19px;
+  font-size: 17px;
   font-weight: 700;
   border: 1px solid rgba(255,255,255,0.24);
   background: rgba(255,255,255,0.08);
 }
 
-.ll-property-main {
+.ll-property-mainline {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 10px;
   min-width: 0;
   flex: 1;
+  font-size: 13px;
 }
 
 .ll-property-name {
   font-family: "Cormorant Garamond", serif;
-  font-size: 24px;
+  font-size: 23px;
   line-height: 1;
   font-weight: 600;
-  margin-bottom: 4px;
 }
 
-.ll-property-address {
-  font-size: 13px;
-  color: rgba(255,255,255,0.68);
+.ll-divider {
+  opacity: 0.38;
 }
 
-.ll-property-meta {
-  margin-top: 12px;
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  align-items: center;
-}
-
-.ll-property-size {
-  font-size: 14px;
-  color: rgba(255,255,255,0.85);
+.ll-property-subtle {
+  color: rgba(255,255,255,0.72);
 }
 
 .ll-property-price {
-  font-size: 15px;
   font-weight: 700;
+  color: #ffffff;
 }
 
-.ll-status {
-  margin-top: 10px;
+.ll-status-inline {
+  margin-left: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 7px 12px;
-  border-radius: var(--radius-pill);
-  font-size: 12px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
-.ll-status.available {
+.ll-status-inline.available {
   background: rgba(255,255,255,0.08);
   color: #fff;
 }
 
-.ll-status.reserved {
+.ll-status-inline.reserved {
   background: rgba(219, 168, 55, 0.18);
   color: #f3d58a;
 }
 
-.ll-status.sold {
+.ll-status-inline.sold {
   background: rgba(197, 63, 63, 0.16);
   color: #ffb1b1;
 }
@@ -480,7 +479,7 @@ body {
 .ll-field textarea {
   width: 100%;
   border: 1px solid rgba(9, 34, 14, 0.14);
-  border-radius: 18px;
+  border-radius: 16px;
   background: #ffffff;
   padding: 14px 16px;
   font-size: 15px;
@@ -534,7 +533,7 @@ body {
 .ll-error {
   display: none;
   margin-top: 14px;
-  border-radius: 18px;
+  border-radius: 16px;
   padding: 14px 16px;
   font-size: 14px;
   line-height: 1.5;
@@ -557,14 +556,6 @@ body {
 @media (max-width: 1100px) {
   .ll-layout {
     grid-template-columns: 1fr;
-  }
-
-  .ll-sidebar {
-    padding: 18px;
-  }
-
-  .ll-property-list {
-    gap: 12px;
   }
 }
 
@@ -592,5 +583,13 @@ body {
 
   .ll-form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .ll-property-mainline {
+    gap: 4px 8px;
+  }
+
+  .ll-status-inline {
+    margin-left: 0;
   }
 }
