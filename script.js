@@ -1,7 +1,4 @@
-const TELEGRAM_BOT_TOKEN = "8666142213:AAGwxsOdYLPUuhqP87uFTcWthyj2qYHQh14";
-const TELEGRAM_CHAT_ID = "-1003728060177";
-
-const TELEGRAM_ENDPOINT = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+const WORKER_BASE_URL = "https://lielupes-loki-web-map.damp-sky-01e1.workers.dev";
 
 const mapEl = document.getElementById("llMap");
 const mapLayersEl = document.getElementById("llMapLayers");
@@ -293,7 +290,6 @@ function renderMap() {
   properties.forEach((property) => {
     const polygonString = property.points.map((point) => `${point.x}% ${point.y}%`).join(", ");
     const center = getCenter(property.points);
-    const statusClass = getStatusClass(property.status);
 
     const overlay = document.createElement("button");
     overlay.type = "button";
@@ -343,20 +339,19 @@ function renderList() {
     const statusClass = getStatusClass(property.status);
 
     card.innerHTML = `
-      <div class="ll-property-card-top">
+      <div class="ll-property-line">
         <div class="ll-property-badge">${escapeHtml(property.number)}</div>
-        <div class="ll-property-main">
-          <div class="ll-property-name">${escapeHtml(property.name)}</div>
-          <div class="ll-property-address">${escapeHtml(property.address)}</div>
+        <div class="ll-property-mainline">
+          <span class="ll-property-name">${escapeHtml(property.name)}</span>
+          <span class="ll-divider">·</span>
+          <span class="ll-property-subtle">${escapeHtml(property.address)}</span>
+          <span class="ll-divider">·</span>
+          <span class="ll-property-subtle">${escapeHtml(property.size)}</span>
+          <span class="ll-divider">·</span>
+          <span class="ll-property-price">${escapeHtml(property.price)}</span>
         </div>
+        <span class="ll-status-inline ${statusClass}">${escapeHtml(property.status)}</span>
       </div>
-
-      <div class="ll-property-meta">
-        <div class="ll-property-size">${escapeHtml(property.size)}</div>
-        <div class="ll-property-price">${escapeHtml(property.price)}</div>
-      </div>
-
-      <div class="ll-status ${statusClass}">${escapeHtml(property.status)}</div>
     `;
 
     card.addEventListener("click", () => {
@@ -390,46 +385,49 @@ function closeModal() {
   document.body.style.overflow = "";
 }
 
-async function sendToTelegram(payload) {
-  const text = [
-    "🏡 Jauna Lielupes Loki rezervācija",
-    "",
-    `Zemesgabals: ${payload.plot_number}. ${payload.plot_name}`,
-    `Adrese: ${payload.plot_address}`,
-    `Cena: ${payload.plot_price}`,
-    `Platība: ${payload.plot_size}`,
-    "",
-    `Vārds: ${payload.first_name}`,
-    `Uzvārds: ${payload.last_name}`,
-    `Tālrunis: ${payload.phone}`,
-    `E-pasts: ${payload.email}`,
-    `Komentārs: ${payload.message || "-"}`,
-    "",
-    `Laiks: ${new Date().toLocaleString("lv-LV")}`
-  ].join("\n");
+async function fetchStatusesFromWorker() {
+  const response = await fetch(`${WORKER_BASE_URL}/api/plots`, {
+    method: "GET"
+  });
 
-  const response = await fetch(TELEGRAM_ENDPOINT, {
+  if (!response.ok) {
+    throw new Error("Neizdevās iegūt zemesgabalu statusus no servera.");
+  }
+
+  return response.json();
+}
+
+async function syncStatuses() {
+  try {
+    const data = await fetchStatusesFromWorker();
+    const statusMap = data.statuses || {};
+
+    properties.forEach((property) => {
+      const workerStatus = statusMap[String(property.id)];
+      if (workerStatus === "Rezervēts" || workerStatus === "Pārdots") {
+        property.status = workerStatus;
+      } else {
+        property.status = "Pieejams";
+      }
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function reservePlot(payload) {
+  const response = await fetch(`${WORKER_BASE_URL}/api/reserve`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({
-      chat_id: TELEGRAM_CHAT_ID,
-      text,
-      parse_mode: "HTML",
-      disable_web_page_preview: true
-    })
+    body: JSON.stringify(payload)
   });
 
-  let result = null;
-  try {
-    result = await response.json();
-  } catch (error) {
-    throw new Error("Neizdevās nolasīt Telegram atbildi.");
-  }
+  const result = await response.json().catch(() => ({}));
 
-  if (!response.ok || !result.ok) {
-    throw new Error("Telegram nosūtīšana neizdevās. Ja lapa ir publiska vai CORS bloķē pieprasījumu, pārvieto šo uz Cloudflare Worker.");
+  if (!response.ok) {
+    throw new Error(result.error || "Rezervācija neizdevās.");
   }
 
   return result;
@@ -505,19 +503,17 @@ reservationForm.addEventListener("submit", async (event) => {
   submitBtn.textContent = "Nosūta...";
 
   try {
-    await sendToTelegram(payload);
-
-    property.status = "Rezervēts";
+    await reservePlot(payload);
+    await syncStatuses();
 
     renderMap();
     renderList();
     populateSelect();
 
-    successEl.textContent = "Paldies! Pieteikums ir nosūtīts. Zemesgabals ir atzīmēts kā rezervēts, un mēs ar Jums sazināsimies tuvākajā laikā.";
+    successEl.textContent = "Paldies! Zemesgabals ir rezervēts uz 72 stundām, un mēs ar Jums sazināsimies tuvākajā laikā.";
     successEl.classList.add("is-visible");
 
     reservationForm.reset();
-    plotSelect.value = "";
 
     setTimeout(() => {
       closeModal();
@@ -532,9 +528,14 @@ reservationForm.addEventListener("submit", async (event) => {
   }
 });
 
-renderMap();
-renderList();
+async function init() {
+  await syncStatuses();
+  renderMap();
+  renderList();
 
-if (properties.length > 0) {
-  setActive(properties[0].id, { scrollCard: false });
+  if (properties.length > 0) {
+    setActive(properties[0].id, { scrollCard: false });
+  }
 }
+
+init();
