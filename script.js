@@ -18,10 +18,10 @@ const properties = [
   {
     id: 1,
     number: 1,
-    name: "Lielupes 1",
-    address: "Lielupes iela 1",
+    name: "Auzu iela 40",
+    address: "Auzu iela 40",
     size: "128 m²",
-    price: "€31 000",
+    price: "€55 000",
     status: "Pieejams",
     points: [
       { x: 32.3828, y: 64.6528 },
@@ -34,7 +34,7 @@ const properties = [
   {
     id: 2,
     number: 2,
-    name: "Lielupes 2",
+    name: "Auzu iela 42",
     address: "Lielupes iela 2",
     size: "144 m²",
     price: "€34 000",
@@ -49,7 +49,7 @@ const properties = [
   {
     id: 3,
     number: 3,
-    name: "Lielupes 3",
+    name: "Auzu iela 44",
     address: "Lielupes iela 3",
     size: "168 m²",
     price: "€37 000",
@@ -64,7 +64,7 @@ const properties = [
   {
     id: 4,
     number: 4,
-    name: "Lielupes 4",
+    name: "Auzu iela 48",
     address: "Lielupes iela 4",
     size: "206 m²",
     price: "€46 000",
@@ -80,7 +80,7 @@ const properties = [
   {
     id: 5,
     number: 5,
-    name: "Lielupes 5",
+    name: "Auzu iela 46",
     address: "Lielupes iela 5",
     size: "112 m²",
     price: "€33 000",
@@ -94,7 +94,7 @@ const properties = [
   {
     id: 6,
     number: 6,
-    name: "Lielupes 6",
+    name: "Auzu iela 38",
     address: "Lielupes iela 6",
     size: "182 m²",
     price: "€41 000",
@@ -109,7 +109,7 @@ const properties = [
   {
     id: 7,
     number: 7,
-    name: "Lielupes 7",
+    name: "Auzu iela 36",
     address: "Lielupes iela 7",
     size: "238 m²",
     price: "€44 000",
