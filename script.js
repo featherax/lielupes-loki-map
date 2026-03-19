@@ -15,6 +15,23 @@ const errorEl = document.getElementById("llError");
 const submitBtn = document.getElementById("submitBtn");
 
 const properties = [
+   {
+    id: 1,
+    number: 1,
+    name: "Auzu iela 36",
+    address: "1",
+    size: "2200 m²",
+    price: "€80 000",
+    status: "Pieejams",
+    points: [
+      { x: 37.6953, y: 40.2778 },
+      { x: 50.0000, y: 49.8611 },
+      { x: 32.1484, y: 50.4167 },
+      { x: 24.6484, y: 59.9306 },
+      { x: 23.7891, y: 58.8194 },
+      { x: 37.6953, y: 40.2778 }
+    ]
+  },
   {
     id: 3,
     number: 3,
@@ -104,23 +121,6 @@ const properties = [
       { x: 24.7266, y: 61.4583 },
       { x: 32.2266, y: 51.8056 },
       { x: 50.1953, y: 51.2500 }
-    ]
-  },
-  {
-    id: 1,
-    number: 1,
-    name: "Auzu iela 36",
-    address: "1",
-    size: "2200 m²",
-    price: "€80 000",
-    status: "Pieejams",
-    points: [
-      { x: 37.6953, y: 40.2778 },
-      { x: 50.0000, y: 49.8611 },
-      { x: 32.1484, y: 50.4167 },
-      { x: 24.6484, y: 59.9306 },
-      { x: 23.7891, y: 58.8194 },
-      { x: 37.6953, y: 40.2778 }
     ]
   }
 ];
