@@ -127,6 +127,10 @@ const properties = [
 
 let activeId = null;
 
+function isMobileMapMode() {
+  return window.matchMedia("(max-width: 767px)").matches || window.matchMedia("(hover: none)").matches;
+}
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -243,6 +247,11 @@ function positionTooltip(centerX, centerY) {
 }
 
 function showTooltip(property) {
+  if (isMobileMapMode()) {
+    hideTooltip();
+    return;
+  }
+
   const center = getCenter(property.points);
   tooltipEl.innerHTML = buildTooltipContent(property);
   tooltipEl.classList.add("is-visible");
@@ -300,14 +309,22 @@ function renderMap() {
     if (property.status === "Rezervēts") overlay.classList.add("is-reserved");
     if (property.status === "Pārdots") overlay.classList.add("is-sold");
 
-    overlay.addEventListener("mouseenter", () => {
-      setActive(property.id, { scrollCard: false });
-    });
+   overlay.addEventListener("mouseenter", () => {
+  if (!isMobileMapMode()) {
+    setActive(property.id, { scrollCard: false });
+  }
+});
 
-    overlay.addEventListener("click", (event) => {
-      event.stopPropagation();
-      setActive(property.id, { scrollCard: true });
-    });
+overlay.addEventListener("click", (event) => {
+  event.stopPropagation();
+
+  if (isMobileMapMode()) {
+    openModal(property.id);
+    return;
+  }
+
+  setActive(property.id, { scrollCard: true });
+});
 
     const numberBubble = document.createElement("div");
     numberBubble.className = "ll-plot-number";
@@ -354,9 +371,14 @@ function renderList() {
       </div>
     `;
 
-    card.addEventListener("click", () => {
-      setActive(property.id, { scrollCard: false });
-    });
+   card.addEventListener("click", () => {
+  if (isMobileMapMode()) {
+    openModal(property.id);
+    return;
+  }
+
+  setActive(property.id, { scrollCard: false });
+});
 
     propertyListEl.appendChild(card);
   });
