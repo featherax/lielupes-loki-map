@@ -568,6 +568,7 @@ body {
   }
 
   .ll-tooltip {
+    display: none !important;
     min-width: 220px;
     max-width: min(280px, calc(100vw - 24px));
   }
