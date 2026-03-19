@@ -141,5 +141,13 @@
   setTimeout(sendEmbedHeight, 300);
   setTimeout(sendEmbedHeight, 1000);
 </script>
+  <script>
+  window.addEventListener("message", function (event) {
+    if (event.data && event.data.type === "lielupes-loki-resize-request") {
+      setTimeout(sendEmbedHeight, 50);
+      setTimeout(sendEmbedHeight, 300);
+    }
+  });
+</script>
 </body>
 </html>
