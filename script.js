@@ -93,6 +93,20 @@ const properties = [
       { x: 43.9453, y: 66.1111 }
     ]
   },
+     {
+    id: 6,
+    number: 6,
+    name: "Auzu iela 46",
+    address: "6",
+    size: "2200 m²",
+    price: "€80 000",
+    status: "Pieejams",
+    points: [
+      { x: 51.3672, y: 50.9722 },
+      { x: 67.8125, y: 64.3056 },
+      { x: 45.6250, y: 62.4306 }
+    ]
+  },
   {
     id: 7,
     number: 7,
@@ -107,20 +121,6 @@ const properties = [
       { x: 60.1172, y: 66.3889 },
       { x: 74.6484, y: 67.0833 },
       { x: 79.8828, y: 81.8056 }
-    ]
-  },
-  {
-    id: 6,
-    number: 6,
-    name: "Auzu iela 46",
-    address: "6",
-    size: "2200 m²",
-    price: "€80 000",
-    status: "Pieejams",
-    points: [
-      { x: 51.3672, y: 50.9722 },
-      { x: 67.8125, y: 64.3056 },
-      { x: 45.6250, y: 62.4306 }
     ]
   }
 ];
