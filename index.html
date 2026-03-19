@@ -105,5 +105,41 @@
   </div>
 
   <script src="script.js"></script>
+  <script>
+  function sendEmbedHeight() {
+    const body = document.body;
+    const html = document.documentElement;
+
+    const height = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    );
+
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage(
+        {
+          type: "lielupes-loki-resize",
+          height: height
+        },
+        "*"
+      );
+    }
+  }
+
+  window.addEventListener("load", sendEmbedHeight);
+  window.addEventListener("resize", sendEmbedHeight);
+
+  const observer = new ResizeObserver(() => {
+    sendEmbedHeight();
+  });
+
+  observer.observe(document.body);
+
+  setTimeout(sendEmbedHeight, 300);
+  setTimeout(sendEmbedHeight, 1000);
+</script>
 </body>
 </html>
