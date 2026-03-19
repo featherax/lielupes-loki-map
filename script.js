@@ -16,12 +16,12 @@ const submitBtn = document.getElementById("submitBtn");
 
 const properties = [
   {
-    id: 1,
-    number: 1,
+    id: 3,
+    number: 3,
     name: "Auzu iela 40",
-    address: "",
-    size: "128 m²",
-    price: "€55 000",
+    address: "3",
+    size: "1500 m²",
+    price: "€55 500",
     status: "Pieejams",
     points: [
       { x: 32.3828, y: 64.6528 },
@@ -32,12 +32,12 @@ const properties = [
     ]
   },
   {
-    id: 2,
-    number: 2,
+    id: 4,
+    number: 4,
     name: "Auzu iela 42",
-    address: "",
-    size: "144 m²",
-    price: "€34 000",
+    address: "4",
+    size: "1500 m²",
+    price: "€55 500",
     status: "Pieejams",
     points: [
       { x: 33.4375, y: 65.2083 },
@@ -47,12 +47,12 @@ const properties = [
     ]
   },
   {
-    id: 3,
-    number: 3,
+    id: 5,
+    number: 5,
     name: "Auzu iela 44",
-    address: "",
-    size: "168 m²",
-    price: "€37 000",
+    address: "5",
+    size: "1500 m²",
+    price: "€55 500",
     status: "Pieejams",
     points: [
       { x: 56.2500, y: 66.7361 },
@@ -62,12 +62,12 @@ const properties = [
     ]
   },
   {
-    id: 4,
-    number: 4,
+    id: 7,
+    number: 7,
     name: "Auzu iela 48",
-    address: "",
-    size: "206 m²",
-    price: "€46 000",
+    address: "7",
+    size: "1800 m²",
+    price: "€66 600",
     status: "Pieejams",
     points: [
       { x: 79.8828, y: 81.8056 },
@@ -78,12 +78,12 @@ const properties = [
     ]
   },
   {
-    id: 5,
-    number: 5,
+    id: 6,
+    number: 6,
     name: "Auzu iela 46",
-    address: "",
-    size: "112 m²",
-    price: "€33 000",
+    address: "6",
+    size: "2200 m²",
+    price: "€80 000",
     status: "Pieejams",
     points: [
       { x: 51.3672, y: 50.9722 },
@@ -92,12 +92,12 @@ const properties = [
     ]
   },
   {
-    id: 6,
-    number: 6,
+    id: 2,
+    number: 2,
     name: "Auzu iela 38",
-    address: "",
-    size: "182 m²",
-    price: "€41 000",
+    address: "2",
+    size: "2531 m²",
+    price: "€80 000",
     status: "Pieejams",
     points: [
       { x: 44.6094, y: 62.5694 },
@@ -107,12 +107,12 @@ const properties = [
     ]
   },
   {
-    id: 7,
-    number: 7,
+    id: 1,
+    number: 1,
     name: "Auzu iela 36",
-    address: "",
-    size: "238 m²",
-    price: "€44 000",
+    address: "1",
+    size: "2200 m²",
+    price: "€80 000",
     status: "Pieejams",
     points: [
       { x: 37.6953, y: 40.2778 },
